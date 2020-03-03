@@ -123,6 +123,8 @@ class Markdown:
                 ext = self.build_extension(ext, configs.get(ext, {}))
             if isinstance(ext, Extension):
                 ext._extendMarkdown(self)
+                if ext not in self.registeredExtensions:
+                    self.registeredExtensions.append(ext)
                 logger.debug(
                     'Successfully loaded extension "%s.%s".'
                     % (ext.__class__.__module__, ext.__class__.__name__)
